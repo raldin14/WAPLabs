@@ -1,1 +1,10 @@
-First tes
+1 - Identify block vs. inline HTML elements: 
+
+Block tags
+<div>,  <p>, <h1/<6>, <hr>,<section>, <header>, <footer>, 
+<nav>, <aside>, <article>, <ol>/<li>, <ul>/<li>, 
+ <form>.    
+
+Inline tags
+<span>,<br>,<img>,<a>,<strong>, <i>,<input>,<textarea>,<button>,<select>/<option>,<label>.
+2 - Please read the attached PDF file carefully and complete all the required tasks.  
