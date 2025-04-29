@@ -1,0 +1,43 @@
+body{
+    margin: 0;
+    background-color: #f9f8fd;
+}
+header {
+    /* border: 1px solid red; */
+    height: 170px;
+    width: 100%;
+    margin-bottom: 4%;
+    background-color: #d9d9d9;
+}
+
+header img{
+    border-radius: 50%;
+    position: fixed;
+    margin-top: 2%;
+    margin-left: 3%;
+}
+
+main{
+    padding-left: 2%;
+}
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    background-color: #d9d9d9;
+    display: flex;
+    justify-content: space-between;
+}
+
+#informationsec{
+    margin-left: 2%;
+}
+
+#validatorsec{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 3%;
+    
+}
