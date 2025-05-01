@@ -12,7 +12,7 @@ console.log(computeSumOfSquares(a));
 console.log("Print add numbers")
 let b = [1,2,3,4,5,6,7,8,9];
 let viewPorpuse = "";
-function printOddNumbersOnly(arr){
+const printOddNumbersOnly = function (arr){
     
     arr.forEach( n => {
         if(n % 2 !== 0){
@@ -27,7 +27,7 @@ document.getElementById('bsolution').innerHTML = viewPorpuse;
 
 console.log("Print the fibo")
 viewPorpuse ="";
-function printFibo(n, a ,b){
+const printFibo = (n, a ,b) => {
     let f;
     while(n-- != 0){
         console.log(a);
