@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styleme.css">
+    <title>Lab 3 - JavaScript</title>
+    <script src="./js/script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Lab 3 Solutions - JavaScript</h1>
+        <p class="spanblue">These solutiosn can be seen in here as well in console, problem 1 to 3 donnot run using node, only problem 4 can run with node.</p>
+    </header>
+    <main>
+    <h2>
+        1. Implement code for the following JavaScript functions, and be sure to use "use strict".
+        Note. You may select one of the functions: function expression, arrow function, or regular function. please practice
+        each function once.
+    </h2>
+    <h3>
+        a) Write a function named, computeSumOfSquares, that takes as input, an array of numbers and calculates
+            and returns the sum of the squares of each number in the input array. E.g. computeSumOfSquares([1,2,3])
+            should be computed as 1^2 + 2^2 +3^2 = 14. Note: Write your JavaScript code without using Imperative
+            programming. i.e. Do NOT use any explicit looping construct; instead use functional programming
+            style/approach.
+    </h3>
+    <h4>Part a Solution whe array is a = [1,2,3]</h4>
+    <span id="asolution"></span>
+
+    <h3>b) Write a function named, printOddNumbersOnly, that takes as input, an array of numbers and it finds and
+        prints only the numbers which are odd.
+    </h3>
+    <h4>Part b Solution whe array is b = [1,2,3,4,5,6,7,8,9]</h4>
+    <span id="bsolution"></span>
+
+    <h3>c) Write a function named printFibo, that takes as input, a given length, n, and any two starting numbers a and
+        b, and it prints-out the Fibonacci sequence, e.g. (0, 1, 1, 2, 3, 5, 8, 13, 21, 34,…) of the given length,
+        beginning with a and b. (e.g. printFibo(n=1, a=0, b=1), prints-out: "0", as output; printFibo(n=2, a=0, b=1),
+        prints-out: "0, 1", as output; printFibo(n=3, a=0, b=1), prints-out: "0, 1, 1", as output; printFibo(n=6, a=0,
+        b=1), prints-out: "0, 1, 1, 2, 3, 5", as output; and printFibo(n=10, a=0, b=1), prints-out: "0, 1, 1, 2, 3, 5, 8, 13,
+        21, 34", as output).
+    </h3>
+    <h4>Part c Solution n = 1</h4>
+    <span id="csolution1"></span>
+    <h4>Part c Solution n = 2</h4>
+    <span id="csolution2"></span>
+    <h4>Part c Solution n = 3</h4>
+    <span id="csolution3"></span>
+    <h4>Part c Solution n = 6</h4>
+    <span id="csolution6"></span>
+    <h4>Part c Solution n = 10</h4>
+    <span id="csolution10"></span>
+
+    <h3>2. Destructuring assignment:
+        Write the Destructuring assignment that reads:
+        name property into the variable name.
+        years property into the variable age.
+        isAdmin property into the variable isAdmin (false, if no such property)
+        Here’s an example of the values after your assignment:
+    </h3>
+    <h4>Solution for destructuring will pop in alerts</h4>
+    <h3>3. Array and its methods, and Object literal assignment:</h3>
+    <ul id="library"></ul>
+    <h3>Write the following JavaScript functions:
+        o addBook, which will take title, author, and ID as inputs. It will create a new book object and add it to the
+        libraryBooks if not exists. addBook should return the newly created book.
+    </h3>
+    <h4>After calling addBook only those that are not found are added</h4>
+    <pre>
+        Thses are the new books
+        addBook("The Yellow Road", "Brian Neil", 2245);
+        addBook("The Road Ahead", "Bill Gates", 4268);
+        addBook("The Road Ahead", "Bill Gates", 4267);
+        addBook("Walter Isaacson", "Steve Jobs", 4267);
+    </pre>
+    <ul id="bookAdded"></ul>
+
+    <h3>
+        o getTitles, which will return all the book titles (string array). The array should be sorted alphabetically.
+    </h3>
+    <h4>Getting the String array of book titles</h4>
+    <ul id="booktitle"></ul>
+
+    <h3>o findBooks, which will take the keyword of title as input. It will find books which contain the given keyword in
+        the title and return books (object array). The books should be sorted by ID.
+    </h3>
+    <h4>After finding all books that title contains Road</h4>
+    <ul id="findByTitle"></ul>
+
+    <h3>4. Implement following functions in data.js and test those in script.js:
+         data.js
+    </h3>
+    <h4>For this solution I have created the file script2.js</h4>
+    <p>By runing in node the following script node lab3/js/script2.js you will be able to see the result.</p>
+</main>
+    <footer>
+        <div id="informationsec">
+            <h3>Raldin Dilone Hidalgo T.</h3>
+            <p>Maharishi International University</p>
+            <address>1000 N 4th St. Fairfield, Iowa, 52557</address>
+            <p>Email: <a href="mailto:rhidalgotirado@miu.edu">rhidalgotirado@miu.edu</a></p>
+        </div>
+        <div id="validatorsec">
+            <a href="https://validator.w3.org/check?url=https://raldin14.github.io/WAPLabs/lab3/index.html" target="_blank">
+                <img src="../image/w3c-html5-logo.png" alt="Validator logo">
+            </a>
+            <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://raldin14.github.io/WAPLabs/lab3/index.html" target="_blank">
+                <img src="../image/w3c-css-logo.png" alt="Valid CSS!" width="85" height="32">
+            </a>
+        </div>
+        
+    </footer>
+</body>
+</html>
