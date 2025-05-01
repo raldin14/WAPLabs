@@ -61,7 +61,7 @@ h1, h2{
 }
 
 #headername {
-    display: flexbox;
+    display: flex;
 }
 
 header h1{
