@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styleme.css">
+    <title>Document</title>
+    <script src="./script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Lab 4 Solutions - Execution Context & Closures</h1>
+        <p class="spanblue">These are the solutions for lab 4.</p>
+    </header>
+    <main>
+    <h2>
+        1. What will be printed by the following code snippets in strict mode (answer without running it)?<br />
+        2. Draw the lexical environment diagram for each code snippet. Or you may list it instead of
+        drawing.
+    </h2>
+    <h3>
+        First snippet code
+    </h3>
+    <pre>
+        <code>
+            let x; //undefined
+            var a =  5;
+            var b = 10;
+            var c = function(a,b,c){
+                document.write(x)//undefined
+                document.write(a);//8
+                var f = function(a,b,c){
+                    b = a;//8
+                    document.write(b);//8
+                    b = c;//10
+                    var x = 5;
+                }
+    
+                f(a,b,c);
+                document.write(b);//9
+                var x = 10;
+            }
+    
+            c(8,9,10);
+            document.write(b);//10
+            document.write(x);//undefined
+        </code>
+    </pre>
+    
+    <h4>Solution 1</h4>
+    <ul>
+        <li>1. Global EC creation:</li>
+        <li>Outer: null, LE: [{a: undefined, b: undefined, c: undefined}], TDZ{x}</li>
+        <li>2.Global EC execution:</li>
+        <li>Outer: null, LE: [{x:undefined,a:5,b:10,c:fn},call C,output:[b:10,x:undefined]], TDZ{}</li>
+        <li>3.C FEC creation:</li>
+        <li>Outer: global, LE: [{arguments:obj, a:8,b:9,c:10, f: undefined, x:undefined}], TDZ{}</li>
+        <li>4.C FEC execution:</li>
+        <li>Outer: global , LE: [{arguments:obj,a:8,b:9,c:10,output:[x:undefined, a:8],f:fn,call f,output:[b:9],x:10  }], TDZ{}</li>
+        <li>5.F FEC creation:</li>
+        <li>Outer: global, LE: [{arguments:obj, a:8,b:9,c:10, x:undefined}], TDZ{}</li>
+        <li>6.F FEC execution:</li>
+        <li>Outer: global , LE: [{b:8,output:[b:8],b:10,x:5  }], TDZ{}</li>
+    </ul>
+    <h3>Secind snippet code</h3>
+    <pre>
+        <code>
+            var x = 9;
+            function myFunction(){
+                return x * x;
+            }
+
+            document.write(myFunction());//81
+            var x = 5;
+            document.write(myFunction());//25
+        </code>
+    </pre>
+    <h4>Solution 2</h4>
+    <ul>
+        <li>1. Global EC creation:</li>
+        <li>Outer: null, LE: [{x: undefined, myFunction:fn}], TDZ{}</li>
+        <li>2.Global EC execution:</li>
+        <li>Outer: null, LE: [{x:9},call myFunction,output:[81],x:5,call myFunction,output:[25]], TDZ{}</li>
+        <li>3.myFunction FEC creation:</li>
+        <li>Outer: global, LE: [{arguments:{}}], TDZ{}</li>
+        <li>4.myFunction FEC execution:</li>
+        <li>Outer: global , LE: [{arguments:{}}], TDZ{}</li>
+        <li>5.myFunction FEC creation:</li>
+        <li>Outer: global, LE: [{arguments:{}}], TDZ{}</li>
+        <li>6.myFunction FEC execution:</li>
+        <li>Outer: global , LE: [{arguments:{}}], TDZ{}</li>
+    </ul>
+
+    <h3>Third snippet code </h3>
+    <pre>
+        <code>
+            var foo = 1;
+
+            function bar(){
+                if(!foo){//undefined
+                    var foo = 10;
+                }
+                document.write(foo);//10
+            }
+            bar();
+        </code>
+    </pre>
+    <h4>Solution 3</h4>
+    <ul>
+        <li>1. Global EC creation:</li>
+        <li>Outer: null, LE: [{foo: undefined, bar:fn}], TDZ{}</li>
+        <li>2.Global EC execution:</li>
+        <li>Outer: null, LE: [{foo:1},call bar], TDZ{}</li>
+        <li>3.bar FEC creation:</li>
+        <li>Outer: global, LE: [{arguments:{},foo:undefined}], TDZ{}</li>
+        <li>4.myFunction FEC execution:</li>
+        <li>Outer: global , LE: [{arguments:{},foo:10},output[10]], TDZ{}</li>
+    </ul>
+</main>
+    <footer>
+        <div id="informationsec">
+            <h3>Raldin Dilone Hidalgo T.</h3>
+            <p>Maharishi International University</p>
+            <address>1000 N 4th St. Fairfield, Iowa, 52557</address>
+            <p>Email: <a href="mailto:rhidalgotirado@miu.edu">rhidalgotirado@miu.edu</a></p>
+        </div>
+        <div id="validatorsec">
+            <a href="https://validator.w3.org/check?url=https://raldin14.github.io/WAPLabs/lab4/index.html" target="_blank">
+                <img src="../image/w3c-html5-logo.png" alt="Validator logo">
+            </a>
+            <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://raldin14.github.io/WAPLabs/lab4/index.html" target="_blank">
+                <img src="../image/w3c-css-logo.png" alt="Valid CSS!" width="85" height="32">
+            </a>
+        </div>
+        
+    </footer>
+</body>
+</html>
