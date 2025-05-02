@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styleme.css">
+    <title>Document</title>
+    <script src="./script2.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Lab 5 Solutions - Call Context</h1>
+        <p class="spanblue">These are the solutions for lab 5.</p>
+    </header>
+    <main>
+    <h2>
+        1. What will be printed by the following code snippets in strict mode (answer without running it)?<br>
+        2. Draw the lexical environment diagram for each code snippet. Or you may list it instead of
+        drawing.
+    </h2>
+    <h3>
+        First snippet code
+    </h3>
+    <pre>
+        <code>
+            let str = "Greetings, ";
+            let user = {
+                firstName: "John",
+                lastname: "Smith",
+                display: function () {
+                    console.log(str, this.firstName);
+                    show("hi");
+                }
+            };
+            user.display();
+            function show(msg) {
+                console.log(msg + " " + this.lastname);
+            }
+            show.call(user, "hello");
+        </code>
+    </pre>
+    <h4>Output</h4>
+    <pre>
+        Greetings,  John
+        hi undefined
+        hello Smith
+    </pre>
+    
+    <h4>Solution 1</h4>
+    
+    <ul>
+        <li>1. Global EC creation:</li>
+        <li>outer: null, this: windows, LE:[{show:fn }], TDZ{str,user}</li>
+        <li>2.Global EC execution:</li>
+        <li>outer: null, this: windows, LE:[{show:fn,str:"Greetings, ",user:obj,call user.display() }], TDZ{}</li>
+        <li>3.display FEC creation:</li>
+        <li>outer: user, this: windows, LE:[{argunments:{}}], TDZ{}</li>
+        <li>4.display FEC execution:</li>
+        <li>outer: user, this: windows, LE:[{argunments:{},output[Greetings, John],call show() }], TDZ{}</li>
+        <li>5.show FEC creation:</li>
+        <li>outer: global, this: windows, LE:[{argunments:{msg:"hi"}}], TDZ{}</li>
+        <li>6.display FEC execution:</li>
+        <li>outer: user, this: windows, LE:[{argunments:{msg:"hi"}, output[hi undefined] }], TDZ{}</li>
+        <li>7.show FEC creation:</li>
+        <li>outer: global, this: user, LE:[{argunments:{msg:"hello"}}], TDZ{}</li>
+        <li>8.display FEC execution:</li>
+        <li>outer: user, this: user, LE:[{argunments:{msg:"hello"}, output[hello smith] }], TDZ{}</li>
+    </ul>
+    <h3>Second snippet code</h3>
+    <pre>
+        <code>
+            "use strict";
+            function askPassword(ok, fail){
+                let password = prompt("password?",'');
+                if(password == "rockstar") ok();
+                else fail();
+            }
+
+            let user = {
+                name : 'John',
+                loginOK(){
+                    alert(`${this.name} logged in`);
+                },
+                loginFail(){
+                    alert(`${this.name} failed to login`);
+                },
+            };
+
+            askPassword(user.loginOK, user.loginFail);
+        </code>
+    </pre>
+   
+    <h4>Solution 2</h4>
+    <pre>
+        <code>
+            "use strict";
+            function askPassword(ok, fail){
+                let password = prompt("password?",'');
+                if(password == "rockstar") ok();
+                else fail();
+            }
+
+            let user = {
+                name : 'John',
+                loginOK(){
+                    alert(`${this.name} logged in`);
+                },
+                loginFail(){
+                    alert(`${this.name} failed to login`);
+                },
+            };
+
+            askPassword(user.loginOK.bind(user), user.loginFail.bind(user));
+        </code>
+    </pre>
+
+    <h3>Third snippet code </h3>
+    <pre>
+        <code>
+            "use strict";
+            let group = {
+                title: "Our Group",
+                students: ["John", "Pete", "Alice"],
+                showList: function() {
+                    this.students.forEach(function(student) {
+                        console.log(this.title + ": " + student);
+                    });
+                }
+            };
+            group.showList();
+        </code>
+    </pre>
+    <h4>Solution 3</h4>
+    <pre>
+        <code>
+            "use strict";
+            let group = {
+                title: "Our Group",
+                students: ["John", "Pete", "Alice"],
+                showList: function() {
+                    this.students.forEach(function(student) {
+                        console.log(this.title + ": " + student);
+                    }.bind(this));
+                }
+            };
+            group.showList();
+        </code>
+    </pre>
+</main>
+    <footer>
+        <div id="informationsec">
+            <h3>Raldin Dilone Hidalgo T.</h3>
+            <p>Maharishi International University</p>
+            <address>1000 N 4th St. Fairfield, Iowa, 52557</address>
+            <p>Email: <a href="mailto:rhidalgotirado@miu.edu">rhidalgotirado@miu.edu</a></p>
+        </div>
+        <div id="validatorsec">
+            <a href="https://validator.w3.org/check?url=https://raldin14.github.io/WAPLabs/lab5/index.html" target="_blank">
+                <img src="../image/w3c-html5-logo.png" alt="Validator logo">
+            </a>
+            <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://raldin14.github.io/WAPLabs/lab5/index.html" target="_blank">
+                <img src="../image/w3c-css-logo.png" alt="Valid CSS!" width="85" height="32">
+            </a>
+        </div>
+        
+    </footer>
+</body>
+</html>
