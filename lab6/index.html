@@ -25,6 +25,20 @@
     <img src="./image/objectliteral.png" alt="Object Literal" width="250" height="250">
     <pre>
         <code>
+            let student = {
+                firstname: "",
+                lastname : "",
+                grades : [],
+                inputNewGrade : function(newGrade){
+                    this.grades.push(newGrade);
+                },
+                computeAverageGrade: function(){
+                    if(this.grades.length == 0) return 0;
+                    const sum = this.grades.reduce((a,b) => a+b,0);
+                    return sum/this.grades.length;
+                }
+            }
+            
             let stdObj = Object.create(student);
             stdObj.firstname = "Aida";
             stdObj.lastname = "Garcia";
