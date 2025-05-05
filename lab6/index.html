@@ -22,53 +22,39 @@
         Methods: inputNewGrade(newGrade) : push newGrade to grades. computeAverageGrade(): return the average of grades.
         Create an Array with multiple students which are created using Object.create(); Compute the average grade for all students in the array. 
     </p>
-    <img src="./image/studentObject.png" alt="Object Literal" width="250" height="250">
+    <img src="./image/objectliteral.png" alt="Object Literal" width="250" height="250">
     <pre>
         <code>
-            let student = {
-    
-                inputNewGrade : function(newGrade){
-                    this.grades.push(newGrade);
-                },
-                computeAverageGrade: function(){
-                    if(this.grades.length == 0) return 0;
-                    const sum = this.grades.reduce((a,b) => a+b,0);
-                    return sum/this.grades.length;
-                }
-            }
-            
-            function createStudent(firstname, lastname){
-                let obj = Object.create(student);
-                obj.firstname = firstname;
-                obj.lastname = lastname;
-                obj.grades = [];
-                return obj;
-            }
-            
-            let stdObj = createStudent("Aida","Garcia");
-            
-            let stdObj2 = createStudent("Raldin","Hidalgo");
-            
-            let stdObj3 = createStudent("John","Smith");
-            
-            
-            
+            let stdObj = Object.create(student);
+            stdObj.firstname = "Aida";
+            stdObj.lastname = "Garcia";
+            stdObj.grades = [];
+
+            let stdObj2 = Object.create(student);
+            stdObj2.firstname = "Raldin";
+            stdObj2.lastname = "Hidalgo";
+            stdObj2.grades = [];
+
+            let stdObj3 = Object.create(student);
+            stdObj3.firstname = "john";
+            stdObj3.lastname = "Smith";
+            stdObj3.grades = [];
+
             stdObj.inputNewGrade(100);
             stdObj.inputNewGrade(100);
             stdObj.inputNewGrade(100);
-            
+
             stdObj2.inputNewGrade(45);
             stdObj2.inputNewGrade(50);
             stdObj2.inputNewGrade(60);
-            
+
             stdObj3.inputNewGrade(90);
             stdObj3.inputNewGrade(78);
             stdObj3.inputNewGrade(70);
-            
-            console.log(stdObj2.firstname+" "+stdObj2.computeAverageGrade())
-            
+
+
             let students = [stdObj,stdObj2,stdObj3];
-            students.forEach(s => console.log(s.firstname+" "+s.lastname+" Avg. Grade: "+s.computeAverageGrade()));            
+            students.forEach(s => console.log(s.firstname+" "+s.lastname+" Avg. Grade: "+s.computeAverageGrade()));           
         </code>
     </pre>
     <h4>Output</h4>

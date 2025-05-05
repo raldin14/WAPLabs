@@ -36,17 +36,19 @@
 //  students.forEach(s =>  console.log(s.firstname+" "+s.lastname+" Average: "+s.computeAverageGrade()));
 
 
-// let student = {
-    
-//     inputNewGrade : function(newGrade){
-//         this.grades.push(newGrade);
-//     },
-//     computeAverageGrade: function(){
-//         if(this.grades.length == 0) return 0;
-//         const sum = this.grades.reduce((a,b) => a+b,0);
-//         return sum/this.grades.length;
-//     }
-// }
+let student = {
+    firstname: "",
+    lastname : "",
+    grades : [],
+    inputNewGrade : function(newGrade){
+        this.grades.push(newGrade);
+    },
+    computeAverageGrade: function(){
+        if(this.grades.length == 0) return 0;
+        const sum = this.grades.reduce((a,b) => a+b,0);
+        return sum/this.grades.length;
+    }
+}
 
 // function createStudent(firstname, lastname){
 //     let obj = Object.create(student);
@@ -63,57 +65,70 @@
 // let stdObj3 = createStudent("John","Smith");
 
 
+let stdObj = Object.create(student);
+stdObj.firstname = "Aida";
+stdObj.lastname = "Garcia";
+stdObj.grades = [];
 
-// stdObj.inputNewGrade(100);
-// stdObj.inputNewGrade(100);
-// stdObj.inputNewGrade(100);
+let stdObj2 = Object.create(student);
+stdObj2.firstname = "Raldin";
+stdObj2.lastname = "Hidalgo";
+stdObj2.grades = [];
 
-// stdObj2.inputNewGrade(45);
-// stdObj2.inputNewGrade(50);
-// stdObj2.inputNewGrade(60);
+let stdObj3 = Object.create(student);
+stdObj3.firstname = "john";
+stdObj3.lastname = "Smith";
+stdObj3.grades = [];
 
-// stdObj3.inputNewGrade(90);
-// stdObj3.inputNewGrade(78);
-// stdObj3.inputNewGrade(70);
+stdObj.inputNewGrade(100);
+stdObj.inputNewGrade(100);
+stdObj.inputNewGrade(100);
 
-// console.log(stdObj2.firstname+" "+stdObj2.computeAverageGrade())
+stdObj2.inputNewGrade(45);
+stdObj2.inputNewGrade(50);
+stdObj2.inputNewGrade(60);
 
-// let students = [stdObj,stdObj2,stdObj3];
-// students.forEach(s => console.log(s.firstname+" "+s.lastname+" Avg. Grade: "+s.computeAverageGrade()));
+stdObj3.inputNewGrade(90);
+stdObj3.inputNewGrade(78);
+stdObj3.inputNewGrade(70);
 
 
-function Animal(name, speed = 0){
-    this.name = name;
-    this.speed = speed;
-}
+let students = [stdObj,stdObj2,stdObj3];
+students.forEach(s => console.log(s.firstname+" "+s.lastname+" Avg. Grade: "+s.computeAverageGrade()));
 
-Animal.prototype.run = function(speed){
-    this.speed = speed;
-}
 
-Animal.compareBySpeed = function(a1,a2){
-    return a1.speed - a2.speed;
-}
+// function Animal(name, speed = 0){
+//     this.name = name;
+//     this.speed = speed;
+// }
 
-function Rabbit(name){
-    Animal.call(this,name);
-}
+// Animal.prototype.run = function(speed){
+//     this.speed = speed;
+// }
 
-Rabbit.prototype.hide = function(){
-    console.log(this.name + " hides");
-}
+// Animal.compareBySpeed = function(a1,a2){
+//     return a1.speed - a2.speed;
+// }
 
-Object.setPrototypeOf(Rabbit.prototype, Animal.prototype);
-Object.setPrototypeOf(Rabbit, Animal);
+// function Rabbit(name){
+//     Animal.call(this,name);
+// }
 
-let rab1 = new Rabbit("White rabbit");
-let rab2 = new Rabbit("brown rabbit");
-let rab3 = new Rabbit("silver rabbit");
+// Rabbit.prototype.hide = function(){
+//     console.log(this.name + " hides");
+// }
 
-let rabbits = [rab1,rab2,rab3];
-rab1.run(25);
-rab2.run(50);
-rab3.run(20);
+// Object.setPrototypeOf(Rabbit.prototype, Animal.prototype);
+// Object.setPrototypeOf(Rabbit, Animal);
 
-rab3.hide();
-console.log(rabbits.sort(Rabbit.compareBySpeed));
+// let rab1 = new Rabbit("White rabbit");
+// let rab2 = new Rabbit("brown rabbit");
+// let rab3 = new Rabbit("silver rabbit");
+
+// let rabbits = [rab1,rab2,rab3];
+// rab1.run(25);
+// rab2.run(50);
+// rab3.run(20);
+
+// rab3.hide();
+// console.log(rabbits.sort(Rabbit.compareBySpeed));
