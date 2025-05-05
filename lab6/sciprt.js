@@ -50,21 +50,6 @@ let student = {
     }
 }
 
-// function createStudent(firstname, lastname){
-//     let obj = Object.create(student);
-//     obj.firstname = firstname;
-//     obj.lastname = lastname;
-//     obj.grades = [];
-//     return obj;
-// }
-
-// let stdObj = createStudent("Aida","Garcia");
-
-// let stdObj2 = createStudent("Raldin","Hidalgo");
-
-// let stdObj3 = createStudent("John","Smith");
-
-
 let stdObj = Object.create(student);
 stdObj.firstname = "Aida";
 stdObj.lastname = "Garcia";
