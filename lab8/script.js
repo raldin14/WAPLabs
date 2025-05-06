@@ -69,24 +69,3 @@ console.log('end');//sync
     }
 })();
 
-
-//    console.log("start");
-//    let x = 10;
-//    function foo(){
-//     console.log(1)
-//     return Promise.resolve("hello");
-//    }
-
-//    function bar(){
-//     console.log("Starte")
-//     foo().then(result => {
-//         console.log(result);
-//         console.log("x",x);
-//     })
-
-//     return Promise.resolve(undefined)
-//    }
-
-//    bar();
-//    x = 40;
-//    console.log("end")
