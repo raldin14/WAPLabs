@@ -70,13 +70,10 @@ exc1.add_movie_in_genre("thriller",{ id: '2', title: 'Arcadian'});
 exc1.add_movie_in_genre("thriller",{ id: '3', title: 'The American'});
 console.log(exc1);
 exc1.update_movie_title_by_genre_and_movie_id("thriller", '3', "IT");
-exc1.update_movie_title_by_genre_and_movie_id("thriller", '4', "IT");
 console.log(exc1);
 exc1.delete_movie_by_genre_and_movie_id("thriller", '2');
 exc1.delete_movie_by_genre_and_movie_id("thriller", '1');
-// exc1.delete_movie_by_genre_and_movie_id("thriller", '3');
-// exc1.delete_movie_by_genre_and_movie_id("thriller", '3');
 console.log(exc1);
-exc1.get_movie_title_by_id("thriller", '3');
+// exc1.get_movie_title_by_id("thriller", '3');
 console.log(exc1.get_movie_title_by_id("thriller", '3'));
 
