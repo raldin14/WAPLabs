@@ -76,7 +76,7 @@
     <pre>
         <code>
             const isPrime = (n: number) => {
-                for (let i = 2, s = Math.sqrt(n); i <= s; i++)
+                for (let i = 2, s = Math.sqrt(n); i &lt;= s; i++)
                 if (n % i === 0) return false;
                 return n > 1;
                };
@@ -95,7 +95,7 @@
     <pre>
         <code>
             const isPrime = (n) => {
-                for (let i = 2, s = Math.sqrt(n); i <= s; i++)
+                for (let i = 2, s = Math.sqrt(n); i &lt;= s; i++)
                 if (n % i === 0) return Promise.reject(false);
                 return Promise.resolve(n > 1);
                };
@@ -118,7 +118,7 @@
     <pre>
         <code>
             const isPrime = async (n) => {
-                for (let i = 2, s = Math.sqrt(n); i <= s; i++)
+                for (let i = 2, s = Math.sqrt(n); i &lt;= s; i++)
                     if (n % i === 0) Promise.reject(false);
                 return Promise.resolve(n > 1);
                };
