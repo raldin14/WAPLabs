@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styleme.css">
+    <script src="./exercise3.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Lab 6 Solutions - Constructor Function</h1>
+        <p class="spanblue">These are the solutions for lab 6.</p>
+    </header>
+    <main>
+    <h2>
+        Question 1: Object Literal
+    </h2>
+    <p>
+        Create an object student using object literal which has:
+        properties: firstName, lastName, grades: Array
+        Methods: inputNewGrade(newGrade) : push newGrade to grades. computeAverageGrade(): return the average of grades.
+        Create an Array with multiple students which are created using Object.create(); Compute the average grade for all students in the array. 
+    </p>
+    <img src="../lab6/image/Objectliteralstudent.png" alt="Object Literal" width="250" height="250">
+    <pre>
+        <code>
+            let student = {
+                firstname: "",
+                lastname : "",
+                grades : [],
+                inputNewGrade : function(newGrade){
+                    this.grades.push(newGrade);
+                },
+                computeAverageGrade: function(){
+                    if(this.grades.length == 0) return 0;
+                    const sum = this.grades.reduce((a,b) => a+b,0);
+                    return sum/this.grades.length;
+                }
+            }
+            
+            let stdObj = Object.create(student);
+            stdObj.firstname = "Aida";
+            stdObj.lastname = "Garcia";
+            stdObj.grades = [];
+
+            let stdObj2 = Object.create(student);
+            stdObj2.firstname = "Raldin";
+            stdObj2.lastname = "Hidalgo";
+            stdObj2.grades = [];
+
+            let stdObj3 = Object.create(student);
+            stdObj3.firstname = "john";
+            stdObj3.lastname = "Smith";
+            stdObj3.grades = [];
+
+            stdObj.inputNewGrade(100);
+            stdObj.inputNewGrade(100);
+            stdObj.inputNewGrade(100);
+
+            stdObj2.inputNewGrade(45);
+            stdObj2.inputNewGrade(50);
+            stdObj2.inputNewGrade(60);
+
+            stdObj3.inputNewGrade(90);
+            stdObj3.inputNewGrade(78);
+            stdObj3.inputNewGrade(70);
+
+
+            let students = [stdObj,stdObj2,stdObj3];
+            students.forEach(s => console.log(s.firstname+" "+s.lastname+" Avg. Grade: "+s.computeAverageGrade()));           
+        </code>
+    </pre>
+    <h4>Output</h4>
+    <pre>
+        Aida Garcia Avg. Grade: 100
+        Raldin Hidalgo Avg. Grade: 51.666666666666664
+        John Smith Avg. Grade: 79.33333333333333
+    </pre>
+    
+    <h3>Question 2: Constructor function</h3>
+    <img src="../lab6/image/fcunstructorstudent.png" alt="Object Literal" width="250" height="250">
+    <pre>
+        <code>
+            function Student(firstname, lastname, grades = []){
+                this.firstname = firstname;
+                this.lastname = lastname;
+                this.grades = grades;
+            }
+            
+            Student.prototype.inputGrade = function(newgrade){
+                this.grades.push(newgrade);
+            }
+            
+            Student.prototype.computeAverageGrade = function(){
+                if(this.grades.length == 0) return 0;
+                const sum = this.grades.reduce((a,b) => a+b,0);
+                return sum/this.grades.length;
+            }
+            
+            const std1 = new Student("Raldin", "Hidalgo");
+            const std2 = new Student("Aida", "Garcia");
+            const std3 = new Student("John", "Smith");
+            
+             std1.inputGrade(100);
+             std1.inputGrade(90);
+             std1.inputGrade(100);
+            
+             std2.inputGrade(90);
+             std2.inputGrade(95);
+             std2.inputGrade(100);
+            
+             std3.inputGrade(90);
+             std3.inputGrade(82);
+             std3.inputGrade(80);
+            
+             let students = [std1,std2,std3];
+            
+             students.forEach(s =>  console.log(s.firstname+" "+s.lastname+" Average: "+s.computeAverageGrade()));
+        </code>
+    </pre>
+    <h4>Output</h4>
+    <pre>
+        Raldin Hidalgo Average: 96.66666666666667
+        Aida Garcia Average: 95
+        John Smith Average: 84
+    </pre>
+
+    <h4>Question 3: </h4>
+    <h3>
+        1. Convert the given diagram to JavaScript’s Prototypal Inheritance diagram and
+        2. Implement the code using the constructor function
+    </h3>
+    <img src="../lab6/image/animalDiagram.png" alt="Object Literal" width="250" height="250">
+    <img src="../lab6/image/Rabbitfconstructor.png" alt="Object Literal" width="250" height="250">
+
+    <pre>
+        <code>
+            function Animal(name, speed = 0){
+                this.name = name;
+                this.speed = speed;
+            }
+            
+            Animal.prototype.run = function(speed){
+                this.speed = speed;
+            }
+            
+            Animal.compareBySpeed = function(a1,a2){
+                return a1.speed - a2.speed;
+            }
+            
+            function Rabbit(name){
+                Animal.call(this,name);
+            }
+            
+            Object.setPrototypeOf(Rabbit.prototype, Animal.prototype);
+            Object.setPrototypeOf(Rabbit, Animal);
+            
+            let rab1 = new Rabbit("White rabbit");
+            let rab2 = new Rabbit("brown rabbit");
+            let rab3 = new Rabbit("silver rabbit");
+            
+            let rabbits = [rab1,rab2,rab3];
+            rab1.run(25);
+            rab2.run(50);
+            rab3.run(20);
+            console.log(rabbits.sort(Rabbit.compareBySpeed));
+        </code>
+    </pre>
+    <h4>Output</h4>
+    <pre>
+        0 Rabbit {name: "silver rabbit", speed: 20, hide: function, run: function}
+        1 Rabbit {name: "White rabbit", speed: 25, hide: function, run: function}
+        2 Rabbit {name: "brown rabbit", speed: 50, hide: function, run: function}
+    </pre>
+    
+</main>
+    <footer>
+        <div id="informationsec">
+            <h3>Raldin Dilone Hidalgo T.</h3>
+            <p>Maharishi International University</p>
+            <address>1000 N 4th St. Fairfield, Iowa, 52557</address>
+            <p>Email: <a href="mailto:rhidalgotirado@miu.edu">rhidalgotirado@miu.edu</a></p>
+        </div>
+        <div id="validatorsec">
+            <a href="https://validator.w3.org/check?url=https://raldin14.github.io/WAPLabs/lab7/index.html" target="_blank">
+                <img src="../image/w3c-html5-logo.png" alt="Validator logo">
+            </a>
+            <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://raldin14.github.io/WAPLabs/lab7/index.html" target="_blank">
+                <img src="../image/w3c-css-logo.png" alt="Valid CSS!" width="85" height="32">
+            </a>
+        </div>
+        
+    </footer>
+</body>
+</html>
+</body>
+</html>
