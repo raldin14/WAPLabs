@@ -3,10 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styleme.css">
     <script src="./script.js" type="module"></script>
     <title>Document</title>
 </head>
 <body>
+    <header>
+        <h1>Lab 8 Timers, Promise, Async & Await, and Fetch API</h1>
+        <p class="spanblue">These are the solutions for lab 8.</p>
+    </header>
+    <main>
+    <h2>
+        Question 1: Implement the code for Meditation class to be used as follows:
+    </h2>
+    <p>
+        <pre>
+            const morning_meditation = new Meditation(5);
+            morning_meditation.start();
+            console.log(`Start meditation`);
+            // Start meditation
+            // 5
+            // 4
+            // 3
+            // 2
+            // 1
+            // Jay Guru Dev
+        </pre> 
+    </p>
+    <h4>Solution:</h4>
+    <pre>
+        <code>
+            class Meditation{
+                constructor(val){
+                    this.val = val;
+                    this.timeout = (val + 1) * 1000;
+                }
+            
+                start(){
+                    let intervalId = setInterval(() => {
+                        console.log(this.val--);
+                    },1000);
+            
+                    setTimeout(() => {
+                        clearInterval(intervalId);
+                        console.log("Jay Guru Dev");
+                    }, this.timeout);
+                }
+            }
+            
+            const morning_meditation = new Meditation(5);
+            morning_meditation.start();
+            console.log(`Start meditation`);
+            Start meditation
+                  
+        </code>
+    </pre>
+    <h4>Output</h4>
+    <pre>
+        5
+        4
+        3
+        2
+        1
+        Jay Guru Dev  
+    </pre>
     
+    <h3>Question 2: Change isPrime function below to run asynchronously using Promise.</h3>
+    <ul>
+        <li>if the input is prime number, the promise resolves with { prime: true }.</li>
+        <li>if the input is not a prime number, it rejects with { prime: false }.</li>
+    </ul>
+    <pre>
+        <code>
+            const isPrime = (n: number) => {
+                for (let i = 2, s = Math.sqrt(n); i <= s; i++)
+                if (n % i === 0) return false;
+                return n > 1;
+               };
+               When you finish, test using the code below:
+               console.log('start');
+               isPrime(7)
+                .then(console.log)
+                .catch(console.error);
+               console.log('end');
+               // start
+               // end
+               // { prime: true }
+        </code>
+    </pre>
+    <h4>Solution</h4>
+    <pre>
+        <code>
+            const isPrime = (n) => {
+                for (let i = 2, s = Math.sqrt(n); i <= s; i++)
+                if (n % i === 0) return Promise.reject(false);
+                return Promise.resolve(n > 1);
+               };
+            
+            console.log('start');
+            isPrime(7)
+             .then(console.log)
+             .catch(console.error);
+            console.log('end');
+        </code>
+    </pre>
+    <h4>Output</h4>
+    <pre>
+        start
+        end
+        true
+    </pre>
+    <h3>Make changes to provided test and use async/await instead of .then() and .catch()</h3>
+    <h4>Solution</h4>
+    <pre>
+        <code>
+            const isPrime = async (n) => {
+                for (let i = 2, s = Math.sqrt(n); i <= s; i++)
+                    if (n % i === 0) Promise.reject(false);
+                return Promise.resolve(n > 1);
+               };
+            
+               console.log('start');
+            
+            (async ()=>{ 
+                let promise = await isPrime(7);
+                console.log(promise);//async
+                
+            })()
+            
+            console.log('end');//sync
+        </code>
+    </pre>
+    <h4>Output</h4>
+    <pre>
+        start
+        end
+        true
+    </pre>
+    <h3>Question 3: Write an IIFE that fetch recipes from https://dummyjson.com/recipes and print to the console a list
+        of recipe names.</h3>
+
+    <pre>
+        <code>
+            (async () => {
+                let response = await fetch("https://dummyjson.com/recipes");
+                if (response.ok) {
+                    let json = await response.json();
+                    // console.log(json);
+                    let recipes = json.recipes;
+                    for(let rec of recipes){
+                        console.log(rec.name);
+                    }
+                } else {
+                    console. log(" HTTP-Error : " + response.status);
+                }
+            })();    
+        </code>
+    </pre>
+    <h4>Output</h4>
+    <pre>
+        Classic Margherita Pizza
+        Vegetarian Stir-Fry
+        Chocolate Chip Cookies
+        Chicken Alfredo Pasta
+        Mango Salsa Chicken
+        Quinoa Salad with Avocado
+        Tomato Basil Bruschetta
+        Beef and Broccoli Stir-Fry
+        Caprese Salad
+        Shrimp Scampi Pasta
+        Chicken Biryani
+        Chicken Karahi
+        Aloo Keema
+        Chapli Kebabs
+        Saag (Spinach) with Makki di Roti
+        Japanese Ramen Soup
+        Moroccan Chickpea Tagine
+        Korean Bibimbap
+        Greek Moussaka
+        Butter Chicken (Murgh Makhani)
+        Thai Green Curry
+        Mango Lassi
+        Italian Tiramisu
+        Turkish Kebabs
+        Blueberry Banana Smoothie
+        Mexican Street Corn (Elote)
+        Russian Borscht
+        South Indian Masala Dosa
+        Lebanese Falafel Wrap
+        Brazilian Caipirinha
+    </pre>
+    
+</main>
+    <footer>
+        <div id="informationsec">
+            <h3>Raldin Dilone Hidalgo T.</h3>
+            <p>Maharishi International University</p>
+            <address>1000 N 4th St. Fairfield, Iowa, 52557</address>
+            <p>Email: <a href="mailto:rhidalgotirado@miu.edu">rhidalgotirado@miu.edu</a></p>
+        </div>
+        <div id="validatorsec">
+            <a href="https://validator.w3.org/check?url=https://raldin14.github.io/WAPLabs/lab8/index.html" target="_blank">
+                <img src="../image/w3c-html5-logo.png" alt="Validator logo">
+            </a>
+            <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://raldin14.github.io/WAPLabs/lab8/index.html" target="_blank">
+                <img src="../image/w3c-css-logo.png" alt="Valid CSS!" width="85" height="32">
+            </a>
+        </div>
+        
+    </footer>
 </body>
 </html>

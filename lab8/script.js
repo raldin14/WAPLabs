@@ -38,23 +38,23 @@
 //  .then(console.log)
 //  .catch(console.error);
 // console.log('end');
-// async function isPrime(n){
-//     for (let i = 2, s = Math.sqrt(n); i <= s; i++)
-//         if (n % i === 0) Promise.reject(false);
-//     return Promise.resolve(n > 1);
-//    };
+ const isPrime = async (n) => {
+    for (let i = 2, s = Math.sqrt(n); i <= s; i++)
+        if (n % i === 0) Promise.reject(false);
+    return Promise.resolve(n > 1);
+   };
 
-//    console.log('start');
+   console.log('start');
 
-// (async ()=>{ 
-//     let promise = await isPrime(7);
-//     console.log(promise);//async
+(async ()=>{ 
+    let promise = await isPrime(7);
+    console.log(promise);//async
     
-// })()
+})()
 
-// console.log('end');//sync
+console.log('end');//sync
 
-// let promise = fetch('https://dummyjson.com/recipes')
+
 (async () => {
     let response = await fetch("https://dummyjson.com/recipes");
     if (response.ok) {
