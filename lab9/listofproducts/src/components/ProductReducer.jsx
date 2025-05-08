@@ -2,7 +2,7 @@ import { useReducer } from "react";
 import { reducer } from "./reducer";
 
 const ProductReducer = (props) =>{
-    const {id, name, price, inStock} = props;
+    const {name, price, inStock} = props;
     const [state, dispatch] = useReducer(reducer,inStock);
 
     return (
