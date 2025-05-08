@@ -10,7 +10,7 @@ const data = [
 const ProductList = () =>{
     
     return (<>
-            <h1>Product List Using usestate</h1>
+            <h1>Product List Using useState</h1>
             <table>
                 <thead>
                     <tr>
@@ -24,7 +24,7 @@ const ProductList = () =>{
                     {data.map( p => <tr key={p.id}><Product key={p.id} {...p}/></tr>)}
                 </tbody>
             </table>
-              <h1>Product List Using usestate</h1>
+              <h1>Product List Using useReducer</h1>
               <table>
                 <thead>
                     <tr>
