@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const Product = (props) =>{
+    
     const {name, price, inStock} = props;
     const [stock, setInStock] = useState(inStock);
     
@@ -8,9 +9,10 @@ const Product = (props) =>{
         setInStock(!event);
     }
     return (
-        <>        
-            <li  style={{color: stock ? 'green' : 'red'}} >{`Product Name: ${name} Price $ ${price} Stock Status ${stock ? 'Yes' : 'NO'}  `}
-            <button onClick={() => stockHandler(stock)}>Stock Status</button></li>
+        <> 
+            <td style={{color: stock ? 'green' : 'red'}}>{name}</td><td>{price}</td><td>{stock ? "In Stock" : "Out of Stock"}</td><td><button onClick={() => stockHandler(stock)}>Stock Status</button></td>
+            {/* <li  style={{color: stock ? 'green' : 'red'}} >{`Product Name: ${name} Price $ ${price} Stock Status ${stock ? 'Yes' : 'NO'}  `}
+            <button onClick={() => stockHandler(stock)}>Stock Status</button></li> */}
         </>
 )
 }

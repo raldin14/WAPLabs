@@ -7,8 +7,7 @@ const ProductReducer = (props) =>{
 
     return (
         <>        
-            <li  style={{color: state ? 'green' : 'red'}} >{`Product Name: ${name} Price $ ${price} Stock Status ${state ? 'Yes' : 'NO'}  `}
-            <button onClick={() => dispatch({type: 'TOGGLE', payload: state})}>Stock Status</button></li>
+            <td style={{color: state ? 'green' : 'red'}}>{name}</td><td>{price}</td><td>{state ? "In Stock" : "Out of Stock"}</td><td><button onClick={() => dispatch({type: 'TOGGLE', payload: state})}>Stock Status</button></td>
         </>
 )
 }

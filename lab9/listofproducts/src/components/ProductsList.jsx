@@ -11,13 +11,40 @@ const ProductList = () =>{
     
     return (<>
             <h1>Product List Using usestate</h1>
-            <ul>
-                {data.map( p => <Product key={p.id} id={p.id} name={p.name} price={p.price} inStock={p.inStock}/>)}
-            </ul>
-            <h1>Product List Using useReduce</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {data.map( p => <tr key={p.id}><Product key={p.id} {...p}/></tr>)}
+                </tbody>
+            </table>
+              <h1>Product List Using usestate</h1>
+              <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {data.map( p => <tr key={p.id}><ProductReducer key={p.id} {...p}/></tr>)}
+                </tbody>
+            </table>
+            {/* <ul>
+                {data.map( p => <Product key={p.id} {...data}/>)}
+            </ul> */}
+            {/* <h1>Product List Using useReduce</h1>
             <ul>
                 {data.map( p => <ProductReducer key={p.id} id={p.id} name={p.name} price={p.price} inStock={p.inStock}/>)}
-            </ul>
+            </ul> */}
         </>
     );
 }
