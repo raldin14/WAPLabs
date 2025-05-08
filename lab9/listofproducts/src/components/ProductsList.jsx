@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Product from './Product';
+import ProductReducer from './ProductReducer';
 const data = [
     { id: 1, name: 'Apple', price: 1, inStock: true },
     { id: 2, name: 'Banana', price: 1, inStock: false },
@@ -9,15 +10,13 @@ const data = [
 const ProductList = () =>{
     
     return (<>
-            <h1>Product List</h1>
-            {/* <table>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Action</th>
-                {data.map( p => <tr key={p.id}><td>{p.name}</td><td>{p.price}</td></tr>)}
-            </table> */}
+            <h1>Product List Using usestate</h1>
             <ul>
                 {data.map( p => <Product key={p.id} id={p.id} name={p.name} price={p.price} inStock={p.inStock}/>)}
+            </ul>
+            <h1>Product List Using useReduce</h1>
+            <ul>
+                {data.map( p => <ProductReducer key={p.id} id={p.id} name={p.name} price={p.price} inStock={p.inStock}/>)}
             </ul>
         </>
     );
