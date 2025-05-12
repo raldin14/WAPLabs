@@ -7,7 +7,7 @@ import App from './App.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <HashRouter>
+    <HashRouter basename="/WAPLabs/lab11/communication/dist_lab11">
       <BookProvider>
         <App/>
       </BookProvider>
