@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styleme.css">
+    <script src="./exercise3.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Lab 12 Solutions - Event Loop</h1>
+        <p class="spanblue">These are the solutions for lab 12.</p>
+    </header>
+    <main>
+        <h2>
+            1. Pls answer the following:
+        </h2>
+        <h3>What is LibUV?</h3>
+        <p>
+            <ul>
+                <li>a multi-platform support library with a focus on asynchronous I/O.</li>
+                <li>Asynchronous file and file system operations</li>
+                <li>Thread pool...</li>
+            </ul>
+        </p>
+        <h3>Explain the difference between setImmediate(f) and setTimeout(f, Time)?</h3>
+        <p>setImmediate() and setTimeout() are both used to schedule asynchronous tasks in Node.js, 
+            but they differ in how they are prioritized within the event loop. setImmediate() runs 
+            after the current event loop's poll phase completes, while setTimeout() runs after a specified delay. 
+            If the setTimeout() delay is 0, it still runs after the current execution context 
+            finishes and the event loop continues. 
+
+            I thing to take into count is that when we run these two only the execution order cannot be specified unles there is a process running.
+        </p>
+        <h3>Explain the difference between process.nextTick(f) and setImmediate(f)?</h3>
+        <p>
+            In Node.js, process.nextTick(f) and setImmediate(f) both schedule callbacks to be executed later, 
+            but they differ in when those callbacks are executed within the event loop. process.nextTick(f) prioritizes 
+            the callback and executes it immediately after the current operation, within the same loop iteration, 
+            while setImmediate(f) schedules the callback to run after the current iteration is complete. 
+        </p>
+        <h3>2. Pls write down the output without executing the following code snippets and check it with result. </h3>
+        <pre>
+            <code>
+                const fs = require('fs');
+
+                //you may assume input.txt is in the same folder
+
+                const rd = fs.createReadStream("input.txt");
+
+                rd.close();
+
+                rd.on("close", () => console.log('readablStream close event'))
+
+                fs.readFile('input.txt', "utf-8", (error, data) => {
+
+                    if (error) console.log(error);
+
+                    else console.log(data)
+
+                });
+
+                setTimeout(() => console.log("this is setTimeout"), 5000);
+
+                setTimeout(() => console.log("this is setTimeout"), 0);
+
+                
+
+                setImmediate(() => console.log("this is setImmediate 1"));
+
+                setImmediate(() => {
+
+                    console.log("this is setImmediate 2")
+
+                    Promise.resolve().then(() => console.log('Promise.resolve inside setImmediate'));
+
+                });
+
+                Promise.resolve().then(() => console.log('Promise.resolve 1'));
+
+                Promise.resolve().then(() => {
+
+                    console.log('Promise.resolve 2')
+
+                    process.nextTick(() => console.log('nextTick inside Promise'));
+
+                });
+
+                process.nextTick(() => console.log('nextTick 1'));         
+            </code>
+        </pre>
+        <h4>Output</h4>
+        <pre>
+            nextTick 1
+            Promise.resolve 1
+            Promise.resolve 2
+            nextTick inside Promise
+            this is setTimeout
+            this is setImmediate 1
+            this is setImmediate 2
+            Promise.resolve inside setImmediate
+            readablStream close event
+            Hello from input.txt
+            this is setTimeout
+        </pre>
+    </main>
+    <footer>
+        <div id="informationsec">
+            <h3>Raldin Dilone Hidalgo T.</h3>
+            <p>Maharishi International University</p>
+            <address>1000 N 4th St. Fairfield, Iowa, 52557</address>
+            <p>Email: <a href="mailto:rhidalgotirado@miu.edu">rhidalgotirado@miu.edu</a></p>
+        </div>
+        <div id="validatorsec">
+            <a href="https://validator.w3.org/check?url=https://raldin14.github.io/WAPLabs/lab12/index.html" target="_blank">
+                <img src="../image/w3c-html5-logo.png" alt="Validator logo">
+            </a>
+            <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://raldin14.github.io/WAPLabs/lab12/index.html" target="_blank">
+                <img src="../image/w3c-css-logo.png" alt="Valid CSS!" width="85" height="32">
+            </a>
+        </div>
+        
+    </footer>
+</body>
+</html>

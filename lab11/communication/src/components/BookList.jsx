@@ -10,8 +10,6 @@ const BookList = (props) =>{
     }
 
     const editingBook = (book) =>{
-        // setEditing(true);
-        // setBook(event);
         navigate('/editbook',{state: {book}})
     }
 
