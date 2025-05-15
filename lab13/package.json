@@ -1,0 +1,12 @@
+{
+  "name": "lab13",
+  "version": "1.0.0",
+  "description": "Lab13 modules",
+  "main": "script.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Raldin Hidalgo",
+  "license": "ISC"
+}
