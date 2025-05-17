@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styleme.css">
+    <script src="./exercise3.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Lab 15 Solutions - TypeScript</h1>
+        <p class="spanblue">These are the solutions for lab 15.</p>
+    </header>
+    <main>
+    <h2>
+        Question 1: 
+    </h2>
+    <p>
+        Define a TypeScript function that takes an object with the following
+        properties: name (string), age (number), and isStudent (boolean). The function should return a
+        string describing the person 
+    </p>
+    <pre>
+        <code>
+            const person : {
+                name: string,
+                age: number,
+                isStudent: boolean
+            }  = {
+                name: "John Smith",
+                age: 30,
+                isStudent: true,
+            }
+            
+            function personDesription(person:  {
+                name: string,
+                age: number,
+                isStudent: boolean
+            }): String{
+                return `Person name is ${person.name} age: ${person.age} is student ${person.isStudent}.`;
+            }
+            
+            console.log(personDesription(person));         
+        </code>
+    </pre>
+    <h4>Output</h4>
+    <pre>
+        erson name is John Smith age: 30 is student true.
+    </pre>
+    
+    <h3>Question 2: </h3>
+    <p>Create a TypeScript function that takes an array of numbers and returns the second largest number
+        within that array.
+        // Your function code here
+        console.log(secondLargest([20 ,120 ,111 ,215 ,54 ,78])); // Output: 120
+        Note: you may NOT use Array.sort().
+    </p>
+
+    <pre>
+        <code>
+            function secondLargest(arr:number[]): number{
+                let largest: number = 0;
+                let secondLargest: number = 0;
+            
+                for(let n of arr){
+                    if(n > largest){
+                        secondLargest = largest;
+                        largest = n;
+                    }
+                }
+                return secondLargest;
+            }
+            
+            // Your function code here
+            console.log(secondLargest([20 ,120 ,111 ,215 ,54 ,78])); // Output: 120
+        </code>
+    </pre>
+    <h4>Output</h4>
+    <pre>
+        120
+    </pre>
+
+    <h3>Question 3: </h3>
+    <p>Create a TypeScript function that takes any number of arguments and returns their sum (use the
+        rest operator).
+    </p>
+
+    <pre>
+        <code>
+            function sum (...arg): number{
+                return arg.reduce((a,b) => a+b,0);
+            }
+            
+            console.log(sum(2,4,6,3));
+        </code>
+    </pre>
+    <h4>Output</h4>
+    <pre>
+        15
+    </pre>
+
+    <h3>Question 4: </h3>
+    <p>Given two arrays:
+        const arr1 = [1, 2, 3];
+        const arr2 = [4, 5, 6];
+        Use the spread operator to concatenate them into a single array.
+    </p>
+
+    <pre>
+        <code>
+            const arr1 = [1, 2, 3];
+            const arr2 = [4, 5, 6];
+
+            console.log([...arr1, ...arr2]);
+        </code>
+    </pre>
+    <h4>Output</h4>
+    <pre>
+        [ 1, 2, 3, 4, 5, 6 ]
+    </pre>
+
+    <h4>Question 5: Convert lab07 Class syntax JavaScript code to TypeScript. </h4>
+
+    <pre>
+        <code>
+            class Student{
+                studentId: number;
+                answer: Question[];
+                constructor(studentId){
+                    this.studentId = studentId;
+                    this.answer = [];
+                }
+            
+                addAnswer(question: Question){
+                    this.answer.push(question);
+                }
+            }
+            
+            class Question{
+                qid: number;
+                answer: string;
+                constructor(qid, answer){
+                    this.qid = qid;
+                    this.answer = answer;
+                }
+            
+                checkAnswer(answer: string){
+                    return this.answer === answer;
+                }
+            }
+            
+            class Quiz{
+                students: Student[];
+                questions: Map<number, Question>;
+                constructor(questions,students){
+                    this.questions = new Map();
+                    this.students = students;
+            
+                    for(let q of questions){
+                        this.questions.set(q.qid, q);
+                    }
+                }
+            
+                scoreStudentBySid(sid: number){
+                    const student = this.students.find(s => s.studentId === sid);
+            
+                    let score = 0;
+                    if(!student) return score;
+            
+                    for(let std of student.answer){
+                        const question = this.questions.get(std.qid);
+                        
+                        if(!question) return score;
+                        
+                        if(question.checkAnswer(std.answer)){
+                            score++;
+                        }
+                    }
+            
+                    return score;
+                }
+            
+                getAverageScore(){
+                    if(this.students.length === 0) return 0;
+            
+                    let totalScore = 0;
+            
+                    for(let scr of this.students){
+                        totalScore += this.scoreStudentBySid(scr.studentId);
+                    }
+            
+                    return totalScore/this.students.length;
+                }
+            }
+            
+            const student1 = new Student(10);
+            student1.addAnswer(new Question(2, 'a'));
+            student1.addAnswer(new Question(3, 'b'));
+            student1.addAnswer(new Question(1, 'b'));
+            const student2 = new Student(11);
+            student2.addAnswer(new Question(3, 'b'));
+            student2.addAnswer(new Question(2, 'a'));
+            student2.addAnswer(new Question(1, 'd'));
+            const students = [student1, student2];
+            const questions =[new Question(1, 'b'), new Question(2, 'a'), new Question(3, 'b')];
+            const quiz = new Quiz(questions, students);
+            let scoreforStudent10 = quiz.scoreStudentBySid(10);
+            console.log(scoreforStudent10); //Expected Result: 3
+            let scoreforStudent11 = quiz.scoreStudentBySid(11);
+            console.log(scoreforStudent11); //Expected Result: 2
+            let average = quiz.getAverageScore();
+            console.log(average); //Expected Reuslt: 2.5
+                        
+        </code>
+    </pre>
+    <h4>Output</h4>
+    <pre>
+        3
+        2
+        2.5
+    </pre>
+    
+</main>
+    <footer>
+        <div id="informationsec">
+            <h3>Raldin Dilone Hidalgo T.</h3>
+            <p>Maharishi International University</p>
+            <address>1000 N 4th St. Fairfield, Iowa, 52557</address>
+            <p>Email: <a href="mailto:rhidalgotirado@miu.edu">rhidalgotirado@miu.edu</a></p>
+        </div>
+        <div id="validatorsec">
+            <a href="https://validator.w3.org/check?url=https://raldin14.github.io/WAPLabs/lab15/index.html" target="_blank">
+                <img src="../image/w3c-html5-logo.png" alt="Validator logo">
+            </a>
+            <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://raldin14.github.io/WAPLabs/lab15/index.html" target="_blank">
+                <img src="../image/w3c-css-logo.png" alt="Valid CSS!" width="85" height="32">
+            </a>
+        </div>
+        
+    </footer>
+</body>
+</html>
